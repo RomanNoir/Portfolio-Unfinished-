@@ -1,0 +1,380 @@
+/* =========================
+   RESET & BODY + SCROLL SNAP
+========================= */
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { height:100%; scroll-behavior:smooth; }
+body {
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  background:#000;
+  color:#fff;
+  overflow-y: auto; /* leave normal scroll */
+}
+/* Scroll container with gentle snapping */
+.scroll-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y proximity;
+  scroll-behavior: smooth;
+  /* NO min-height change! keeps your snap intact */
+}
+
+/* =========================
+   HEADER
+========================= */
+.header {
+  position: fixed;
+  top:34px; left:38px; right:38px;
+  display:flex; justify-content:center;
+  z-index:100;
+}
+.logo img { height:28px; width:auto; position:absolute; cursor:pointer; transition:opacity 0.5s ease; }
+.logo-white{opacity:1;} .logo-black{opacity:0;}
+.nav-desktop{flex:1; display:flex; justify-content:right;}
+.nav-desktop ul{display:flex; gap:28px; list-style:none;}
+.nav-desktop a{font-size:11px; font-weight:400; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; color:#fff; transition:color 0.3s ease;}
+.nav-desktop a:hover{opacity:0.6;}
+.mobile-lang{display:none;}
+.mobile-lang button{font-size:11px; font-weight:400; background:none; border:none; cursor:pointer; color:#fff; padding:6px 12px;}
+.mobile-lang button:hover{opacity:0.6;}
+
+/* =========================
+   HERO VIDEO
+========================= */
+.vhs-wrapper{
+  position:relative; width:100%; height:100vh; overflow:hidden;
+  scroll-snap-align: start;
+}
+.vhs-wrapper video{
+  width:100%; height:100%; object-fit:cover; transform:scale(1.5); pointer-events:none;
+}
+.video-text-logo-align{
+  position:absolute; top:60%; right:38px; transform:translateY(-50%);
+  color:#fff; text-align:right; max-width:800px;
+}
+.video-text-logo-align h1{font-size:5rem; margin-bottom:1rem; font-weight:300;}
+.video-text-logo-align p{font-size:2rem; margin-bottom:2rem; font-weight:300;}
+.video-text-logo-align .cta-button{
+  display:inline-block; padding:12px 28px; font-size:1rem; color:#fff; border:2px solid #fff; text-decoration:none; font-weight:300;
+}
+.video-text-logo-align .cta-button:hover{background:#fff; color:#000;}
+
+/* =========================
+   IDENTIFICATION SECTION
+========================= */
+#identification-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 180px;
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+#identification-section .id-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+#identification-section .id-stack {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* =========================
+   PROJECTS SECTION
+========================= */
+.projects-section { padding:0; margin:0; }
+.project-card {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: #fff;
+  overflow: hidden;
+  padding: 0 38px;
+  scroll-snap-align: start;
+}
+.project-card video {
+  position: absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  object-fit:cover;
+  z-index:0;
+  pointer-events:none;
+    filter: brightness(0.8);
+}
+/* LEFT CAROUSEL */
+.project-left-carousel {
+  flex: 0 0 auto;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  z-index:1;
+  margin-top: 5%;
+}
+.project-left-carousel img {
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius:4px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.5);
+  display: none;
+  opacity:0;
+  transition:opacity 0.5s ease-in-out;
+}
+.project-left-carousel img.active { display:block; opacity:1; }
+/* RIGHT TEXT */
+.project-right-text {
+  flex: 1;
+  z-index:1;
+  display:flex;
+  flex-direction:column;
+  justify-content: flex-start;
+  align-items:flex-start;
+  margin-left:120px;
+  margin-top: 3.7%;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  max-width: 800px;
+  text-align: justify;
+}
+.project-right-text h2 { font-size:3.5rem; margin-bottom:30px; font-weight:450; }
+.project-text { font-size:1.5rem; line-height:1.5; white-space:pre-wrap; font-weight:400; }
+
+/* =========================
+   CONTACT SECTION
+========================= */
+#contact {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content:flex-start;
+  align-items: flex-start;
+  padding-top: 180px;
+  padding-left:38px;
+  padding-right:38px;
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+.contact-bg-wrapper {
+  position: absolute;
+  inset: 0;
+  z-index:0;
+}
+.contact-bg {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transform:scale(1.5);
+  pointer-events:none;
+  background:
+    linear-gradient(
+      rgba(0,0,0,0.35),
+      rgba(0,0,0,0.45)
+    );
+}
+.contact-stack {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap:2.5rem;
+  max-width:700px;
+  width:100%;
+}
+.contact-stack h2 {
+  font-size:5rem;
+  font-weight:300;
+  color:#fff;
+  margin-bottom:2rem;
+}
+@media (max-width: 480px) {
+  .contact-stack h2 {
+    font-size: 3rem;
+  }
+}
+
+/* CONTACT FORM */
+.contact-form {
+  display:flex;
+  flex-direction:column;
+  gap:2rem;
+  width:100%;
+}
+.contact-form .form-row {
+  display:flex;
+  flex-direction:row;
+  align-items:flex-start; /* FIX: MESSAGE label aligns top */
+  gap:1rem;
+}
+.contact-form label {
+  font-size:1.2rem;
+  font-weight:300;
+  text-transform:uppercase;
+  color:#fff;
+  min-width:120px;; /* FIX: aligns MESSAGE label with placeholder */
+}
+.contact-form input, .contact-form textarea {
+  background: none;
+  border: none;
+  outline: none;
+  color:#fff;
+  font-size:1.2rem;
+  font-family:"Helvetica Neue", Arial, sans-serif;
+  width:100%;
+}
+.contact-form textarea {
+  min-height:150px; /* aligns placeholder with label */
+  resize: vertical;
+}
+.contact-form input::placeholder, .contact-form textarea::placeholder {
+  color:#fff;
+  opacity:0.3;
+}
+.contact-form button.cta-button {
+  align-self:flex-start;
+  padding:12px 28px;
+  font-size:1rem;
+  color:#fff;
+  border:2px solid #fff;
+  text-decoration:none;
+  font-weight:300;
+  background:none;
+  cursor:pointer;
+}
+.contact-form button.cta-button:hover {
+  background:#fff;
+  color:#000;
+}
+
+/* =========================
+   FOOTER
+========================= */
+.footer {
+  position: relative;
+  width: 100%;
+  height:60px;
+  background:none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size:0.9rem;
+  color:#888;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  margin-top:0;
+}
+.footer-inner { text-align:center; }
+
+/* =========================
+   RESPONSIVE (EXISTING)
+========================= */
+@media(max-width:1024px){
+  .project-card { flex-direction: column; justify-content: flex-start; height:auto; padding:30px 20px; }
+  .project-left-carousel { width:100%; height:auto; margin-bottom:20px; margin-top:0; }
+  .project-right-text { width:100%; margin-left:0; padding-top:20px; max-width:100%; text-align:left; }
+  .project-text { font-size:1rem; }
+}
+@media(max-width:768px){ .project-text { font-size:0.9rem; } }
+
+
+
+/* =========================
+   MOBILE-ONLY ADJUSTMENTS (iPhone 12-14 portrait)
+========================= */
+@media(max-width:480px) {
+
+  /* ---------- HEADER ---------- */
+  .nav-desktop,
+  .mobile-lang {
+    display: none !important; /* hide nav & language only */
+  }
+
+  .header {
+    display: flex !important;
+    justify-content: center !important; /* horizontal center */
+    align-items: flex-start !important;  /* align top so we can nudge signature down */
+    padding-block: 0 !important;
+    position: fixed !important;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 100;
+  }
+
+  /* ---------- SIGNATURE CENTERED & LOWER ---------- */
+  .header .signature-wrapper {
+    display: flex;
+    justify-content: center; /* horizontal center */
+    width: 100%;
+    margin-top: 24px;       /* adjust vertical position as needed */
+  }
+
+  .header .signature-wrapper .logo-black {
+    display: block;
+    width: auto;
+    height: auto;           /* keep original proportion */
+  }
+
+  /* ---------- FIRST PAGE HERO VIDEO TEXT ---------- */
+  .vhs-wrapper .video-text-logo-align {
+    max-width: 500px;      /* control width so text wraps */
+    top: 45%;              /* move text slightly up */
+    right: 30px;           /* keep right-aligned */
+    transform: translateY(-30%);
+    text-align: right;
+    line-height: 1.1;
+  }
+
+  .vhs-wrapper .video-text-logo-align h1 {
+    font-size: clamp(2.5rem, 5cqi, 3rem); /* title stays large */
+    margin-bottom: 0.5rem;
+  }
+
+  .vhs-wrapper .video-text-logo-align p {
+    font-size: clamp(1rem, 3cqi, 1.5rem);
+    margin-bottom: 1rem;
+  }
+
+  .vhs-wrapper .video-text-logo-align .cta-button {
+    display: inline-block;
+    font-size: 0.95rem;
+    padding: 10px 20px;
+  }
+
+  /* ---------- IDENTITY SECTION TEXT ---------- */
+  #identification-section .id-stack {
+    max-width: 90%;          /* keep content inside screen */
+    margin-inline: auto;      /* center horizontally */
+    padding-inline: 0;        /* remove extra horizontal padding */
+    box-sizing: border-box;   /* prevent overflow */
+  }
+
+  #identification-section .typed-card pre {
+    font-size: clamp(0.7rem, 2.8cqi, 0.9rem); /* mobile-friendly size */
+    line-height: 1.2;
+    overflow-wrap: normal;      /* normal wrapping */
+    word-break: normal;         /* don't break inside words */
+    white-space: pre-wrap;      /* preserve intentional line breaks */
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
