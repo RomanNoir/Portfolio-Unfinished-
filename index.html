@@ -48,7 +48,7 @@
       </div>
     </section>
 
-    <!-- IDENTIFICATION SECTION - Smooth Fade Alternative (no typing) -->
+    <!-- IDENTIFICATION SECTION -->
     <section id="identification-section">
       <div class="id-bg-wrapper">
         <video autoplay muted loop playsinline class="id-bg">
@@ -79,7 +79,6 @@ CAPABILITIES:  POSTERS / BRAND IDENTITY / PRINT ART
                VIDEO EDITING / PACKAGING / MERCH
                SOCIAL MEDIA CONTENT / COLLABORATIONS
                CREATIVE CONCEPTS / VISUAL STORYTELLING"
-
                data-fr="NOM:           ROMAN NOIR
                         
 SEXE:          MASCULIN
@@ -106,7 +105,8 @@ CAPACITÉS:     AFFICHES / IDENTITÉ DE MARQUE / ART IMPRIMÉ
 
     <!-- PROJECTS SECTION -->
     <section id="projects" class="projects-section">
-      <!-- PROJECT 1 -->
+
+      <!-- PROJECT 1 - TÁKO -->
       <div class="project-card">
         <video autoplay muted loop playsinline>
           <source src="taco%20animation.mp4" type="video/mp4" />
@@ -127,7 +127,7 @@ CAPACITÉS:     AFFICHES / IDENTITÉ DE MARQUE / ART IMPRIMÉ
         </div>
       </div>
 
-      <!-- PROJECT 3 + duplicate -->
+      <!-- PROJECT 2 - CMP -->
       <div class="project-card">
         <video autoplay muted loop playsinline>
           <source src="vynil.mp4" type="video/mp4" />
@@ -138,15 +138,15 @@ CAPACITÉS:     AFFICHES / IDENTITÉ DE MARQUE / ART IMPRIMÉ
           <img src="savage.png" alt="Project 3" />
         </div>
         <div class="project-right-text">
-          <h2 data-en="PROJECT &quot;CMP&quot;" data-fr="PROJET &quot;AMC&quot;">PROJECT THREE </h2>
+          <h2 data-en="PROJECT &quot;CMP&quot;" data-fr="PROJET &quot;AMC&quot;">PROJECT "CMP"</h2>
           <div class="project-text"
             data-en="This series of Commercial Music Posters explores a bold visual identity driven by narrative-led design. Weekend After Hours, Drake – Platinum Record, and 21 Savage – American Dream each leverage color, and imagery to reflect the energy, legacy, and tone of their albums. The works achieved strong commercial success, with high engagement and sales performance, alongside additional pieces developed for similar market-driven applications. All projects were created for commercial purposes, focused on connecting with music audiences through clear and impactful visual storytelling. The series demonstrates a concept-led approach to poster design, combining typography, composition, and narrative structure while balancing creative direction with strong commercial effectiveness and real-world visual communication impact."
             data-fr="Cette série d’Affiches Musicales Commerciales explore une identité visuelle forte, guidée par une approche narrative. Les pièces Weekend After Hours, Drake – Platinum Record et 21 Savage – American Dream utilisent couleurs, composition et imagerie pour capturer l’énergie, l’héritage et le ton propres à chaque album. Ces travaux ont rencontré un important succès commercial et ont donné lieu à de nombreuses autres créations développées dans des contextes similaires. Pensée pour un contexte commercial, la série vise à connecter les audiences musicales à travers une narration visuelle claire et impactante. Elle illustre une approche conceptuelle qui équilibre typographie, composition et storytelling, tout en alliant direction artistique et efficacité commerciale, avec un impact visuel fort et durable.">
           </div>
         </div>
       </div>
-       
-   
+
+    </section> <!-- THIS WAS MISSING -->
 
     <!-- CONTACT SECTION -->
     <section id="contact">
@@ -212,9 +212,8 @@ CAPACITÉS:     AFFICHES / IDENTITÉ DE MARQUE / ART IMPRIMÉ
 
   <!-- MAIN SCRIPT -->
   <script>
-    // Smooth language switcher with fade effect (no typing)
+    // Language switcher
     function setLanguage(lang) {
-      // Fade out everything
       const elements = [
         ...document.querySelectorAll(".hero-title, .hero-text, .cta-button"),
         ...document.querySelectorAll(".nav-desktop a[data-en]"),
@@ -222,30 +221,24 @@ CAPACITÉS:     AFFICHES / IDENTITÉ DE MARQUE / ART IMPRIMÉ
         ...document.querySelectorAll("#contact [data-en]"),
         document.getElementById("typed-text")
       ];
-
       elements.forEach(el => {
         if (el) {
           el.style.transition = "opacity 0.3s ease";
           el.style.opacity = "0";
         }
       });
-
       setTimeout(() => {
-        // Update all text content
         document.querySelectorAll(".hero-title, .hero-text, .cta-button").forEach(el => {
           if (el) el.textContent = el.getAttribute(`data-${lang}`);
         });
-
         document.querySelectorAll(".nav-desktop a[data-en]").forEach(el => {
           const tr = el.getAttribute(`data-${lang}`);
           if (tr) el.textContent = tr;
         });
-
         document.querySelectorAll(".project-card h2, .project-card .project-text").forEach(el => {
           const tr = el.getAttribute(`data-${lang}`);
           if (tr) el.textContent = tr;
         });
-
         document.querySelectorAll("#contact [data-en]").forEach(el => {
           const tr = el.getAttribute(`data-${lang}`);
           if (tr) {
@@ -256,21 +249,34 @@ CAPACITÉS:     AFFICHES / IDENTITÉ DE MARQUE / ART IMPRIMÉ
             }
           }
         });
-
-        // Update identification
         const typedText = document.getElementById("typed-text");
         if (typedText) {
           typedText.textContent = typedText.getAttribute(`data-${lang}`);
         }
-
-        // Fade everything back in
         elements.forEach(el => {
           if (el) el.style.opacity = "1";
         });
       }, 320);
     }
 
-    // CAROUSEL (unchanged)
+    // Better carousel + alignment
+    function alignTextWithCarousel() {
+      document.querySelectorAll(".project-card").forEach((card) => {
+        const img = card.querySelector(".project-left-carousel img.active");
+        const text = card.querySelector(".project-right-text");
+        if (img && text) {
+          // Wait until image is fully loaded
+          if (img.complete) {
+            text.style.height = img.clientHeight + "px";
+          } else {
+            img.onload = () => {
+              text.style.height = img.clientHeight + "px";
+            };
+          }
+        }
+      });
+    }
+
     document.querySelectorAll(".project-left-carousel").forEach((carousel) => {
       const images = carousel.querySelectorAll("img");
       let idx = 0;
@@ -282,23 +288,11 @@ CAPACITÉS:     AFFICHES / IDENTITÉ DE MARQUE / ART IMPRIMÉ
       }, 3000);
     });
 
-    function alignTextWithCarousel() {
-      document.querySelectorAll(".project-card").forEach((card) => {
-        const img = card.querySelector(".project-left-carousel img.active");
-        const text = card.querySelector(".project-right-text");
-        if (img && text) {
-          text.style.height = img.clientHeight + "px";
-        }
-      });
-    }
-
-    window.addEventListener("load", alignTextWithCarousel);
-    window.addEventListener("resize", alignTextWithCarousel);
-
-    // Initialize
     window.addEventListener("load", () => {
       setLanguage("en");
+      alignTextWithCarousel();
     });
+    window.addEventListener("resize", alignTextWithCarousel);
   </script>
 </body>
 </html>
