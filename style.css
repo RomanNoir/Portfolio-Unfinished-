@@ -7,15 +7,14 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   background:#000;
   color:#fff;
-  overflow-y: auto; /* leave normal scroll */
+  overflow-y: auto;
 }
-/* Scroll container with gentle snapping */
+
 .scroll-container {
   height: 100vh;
   overflow-y: scroll;
   scroll-snap-type: y proximity;
   scroll-behavior: smooth;
-  /* NO min-height change! keeps your snap intact */
 }
 
 /* =========================
@@ -93,6 +92,7 @@ body {
    PROJECTS SECTION
 ========================= */
 .projects-section { padding:0; margin:0; }
+
 .project-card {
   position: relative;
   height: 100vh;
@@ -104,6 +104,7 @@ body {
   padding: 0 38px;
   scroll-snap-align: start;
 }
+
 .project-card video {
   position: absolute;
   top:0; left:0;
@@ -111,8 +112,9 @@ body {
   object-fit:cover;
   z-index:0;
   pointer-events:none;
-    filter: brightness(0.8);
+  filter: brightness(0.8);
 }
+
 /* LEFT CAROUSEL */
 .project-left-carousel {
   flex: 0 0 auto;
@@ -123,6 +125,7 @@ body {
   z-index:1;
   margin-top: 5%;
 }
+
 .project-left-carousel img {
   max-height: 70vh;
   object-fit: contain;
@@ -132,7 +135,12 @@ body {
   opacity:0;
   transition:opacity 0.5s ease-in-out;
 }
-.project-left-carousel img.active { display:block; opacity:1; }
+
+.project-left-carousel img.active {
+  display:block;
+  opacity:1;
+}
+
 /* RIGHT TEXT */
 .project-right-text {
   flex: 1;
@@ -147,8 +155,19 @@ body {
   max-width: 800px;
   text-align: justify;
 }
-.project-right-text h2 { font-size:3.5rem; margin-bottom:30px; font-weight:450; }
-.project-text { font-size:1.5rem; line-height:1.5; white-space:pre-wrap; font-weight:400; }
+
+.project-right-text h2 {
+  font-size:3.5rem;
+  margin-bottom:30px;
+  font-weight:450;
+}
+
+.project-text {
+  font-size:1.5rem;
+  line-height:1.5;
+  white-space:pre-wrap;
+  font-weight:400;
+}
 
 /* =========================
    CONTACT SECTION
@@ -166,23 +185,22 @@ body {
   overflow: hidden;
   scroll-snap-align: start;
 }
+
 .contact-bg-wrapper {
   position: absolute;
   inset: 0;
   z-index:0;
 }
+
 .contact-bg {
   width:100%;
   height:100%;
   object-fit:cover;
   transform:scale(1.5);
   pointer-events:none;
-  background:
-    linear-gradient(
-      rgba(0,0,0,0.35),
-      rgba(0,0,0,0.45)
-    );
+  background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.45));
 }
+
 .contact-stack {
   position: relative;
   z-index: 1;
@@ -192,12 +210,14 @@ body {
   max-width:700px;
   width:100%;
 }
+
 .contact-stack h2 {
   font-size:5rem;
   font-weight:300;
   color:#fff;
   margin-bottom:2rem;
 }
+
 @media (max-width: 480px) {
   .contact-stack h2 {
     font-size: 3rem;
@@ -211,20 +231,24 @@ body {
   gap:2rem;
   width:100%;
 }
+
 .contact-form .form-row {
   display:flex;
   flex-direction:row;
-  align-items:flex-start; /* FIX: MESSAGE label aligns top */
+  align-items:flex-start;
   gap:1rem;
 }
+
 .contact-form label {
   font-size:1.2rem;
   font-weight:300;
   text-transform:uppercase;
   color:#fff;
-  min-width:120px;; /* FIX: aligns MESSAGE label with placeholder */
+  min-width:120px;
 }
-.contact-form input, .contact-form textarea {
+
+.contact-form input,
+.contact-form textarea {
   background: none;
   border: none;
   outline: none;
@@ -233,14 +257,18 @@ body {
   font-family:"Helvetica Neue", Arial, sans-serif;
   width:100%;
 }
+
 .contact-form textarea {
-  min-height:150px; /* aligns placeholder with label */
+  min-height:150px;
   resize: vertical;
 }
-.contact-form input::placeholder, .contact-form textarea::placeholder {
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
   color:#fff;
   opacity:0.3;
 }
+
 .contact-form button.cta-button {
   align-self:flex-start;
   padding:12px 28px;
@@ -252,6 +280,7 @@ body {
   background:none;
   cursor:pointer;
 }
+
 .contact-form button.cta-button:hover {
   background:#fff;
   color:#000;
@@ -273,36 +302,51 @@ body {
   border-top: 1px solid rgba(255,255,255,0.08);
   margin-top:0;
 }
+
 .footer-inner { text-align:center; }
 
 /* =========================
-   RESPONSIVE (EXISTING)
+   RESPONSIVE
 ========================= */
 @media(max-width:1024px){
-  .project-card { flex-direction: column; justify-content: flex-start; height:auto; padding:30px 20px; }
-  .project-left-carousel { width:100%; height:auto; margin-bottom:20px; margin-top:0; }
-  .project-right-text { width:100%; margin-left:0; padding-top:20px; max-width:100%; text-align:left; }
+  .project-card {
+    flex-direction: column;
+    justify-content: flex-start;
+    height:auto;
+    padding:30px 20px;
+  }
+  .project-left-carousel {
+    width:100%;
+    height:auto;
+    margin-bottom:20px;
+    margin-top:0;
+  }
+  .project-right-text {
+    width:100%;
+    margin-left:0;
+    padding-top:20px;
+    max-width:100%;
+    text-align:left;
+  }
   .project-text { font-size:1rem; }
 }
-@media(max-width:768px){ .project-text { font-size:0.9rem; } }
 
-
+@media(max-width:768px){
+  .project-text { font-size:0.9rem; }
+}
 
 /* =========================
-   MOBILE-ONLY ADJUSTMENTS (iPhone 12-14 portrait)
+   MOBILE-ONLY
 ========================= */
 @media(max-width:480px) {
-
-  /* ---------- HEADER ---------- */
   .nav-desktop,
   .mobile-lang {
-    display: none !important; /* hide nav & language only */
+    display: none !important;
   }
-
   .header {
     display: flex !important;
-    justify-content: center !important; /* horizontal center */
-    align-items: flex-start !important;  /* align top so we can nudge signature down */
+    justify-content: center !important;
+    align-items: flex-start !important;
     padding-block: 0 !important;
     position: fixed !important;
     left: 0;
@@ -310,66 +354,52 @@ body {
     top: 0;
     z-index: 100;
   }
-
-  /* ---------- SIGNATURE CENTERED & LOWER ---------- */
   .header .signature-wrapper {
     display: flex;
-    justify-content: center; /* horizontal center */
+    justify-content: center;
     width: 100%;
-    margin-top: 24px;       /* adjust vertical position as needed */
+    margin-top: 24px;
   }
-
   .header .signature-wrapper .logo-black {
     display: block;
     width: auto;
-    height: auto;           /* keep original proportion */
+    height: auto;
   }
-
-  /* ---------- FIRST PAGE HERO VIDEO TEXT ---------- */
   .vhs-wrapper .video-text-logo-align {
-    max-width: 500px;      /* control width so text wraps */
-    top: 45%;              /* move text slightly up */
-    right: 30px;           /* keep right-aligned */
+    max-width: 500px;
+    top: 45%;
+    right: 30px;
     transform: translateY(-30%);
     text-align: right;
     line-height: 1.1;
   }
-
   .vhs-wrapper .video-text-logo-align h1 {
-    font-size: clamp(2.5rem, 5cqi, 3rem); /* title stays large */
+    font-size: clamp(2.5rem, 5cqi, 3rem);
     margin-bottom: 0.5rem;
   }
-
   .vhs-wrapper .video-text-logo-align p {
     font-size: clamp(1rem, 3cqi, 1.5rem);
     margin-bottom: 1rem;
   }
-
   .vhs-wrapper .video-text-logo-align .cta-button {
     display: inline-block;
     font-size: 0.95rem;
     padding: 10px 20px;
   }
-
-  /* ---------- IDENTITY SECTION TEXT ---------- */
   #identification-section .id-stack {
-    max-width: 90%;          /* keep content inside screen */
-    margin-inline: auto;      /* center horizontally */
-    padding-inline: 0;        /* remove extra horizontal padding */
-    box-sizing: border-box;   /* prevent overflow */
+    max-width: 90%;
+    margin-inline: auto;
+    padding-inline: 0;
+    box-sizing: border-box;
   }
-
   #identification-section .typed-card pre {
-    font-size: clamp(0.7rem, 2.8cqi, 0.9rem); /* mobile-friendly size */
+    font-size: clamp(0.7rem, 2.8cqi, 0.9rem);
     line-height: 1.2;
-    overflow-wrap: normal;      /* normal wrapping */
-    word-break: normal;         /* don't break inside words */
-    white-space: pre-wrap;      /* preserve intentional line breaks */
+    overflow-wrap: normal;
+    word-break: normal;
+    white-space: pre-wrap;
   }
-
 }
-
-
 
 
 
